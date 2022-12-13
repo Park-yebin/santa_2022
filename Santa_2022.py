@@ -45,6 +45,24 @@ def array_to_cartesian(i, j, shape):
 point=(1, 8)
 shape=(9, 9, 3)
 assert cartesian_to_array(*array_to_cartesian(*point, shape), shape)==point
+
+
+# +
+# make function to map an image between array and record formats
+def image_to_dict(image):
+    image=np.atleast_3d(image)
+    kv_image={}
+    for i, j in product(range(len(image)), repeat=2):
+        kv_image[array_to_cartesian(i, j, image.shape)]=tuple(image[i, j])
+    return kv_image
+
+def image_to_df(image):
+    return pd.DataFrame([(x, y, r, g, b) for (x, y), (r, g, b) in image_to_dict(image).items()],
+                       columns=['x', 'y', 'r', 'g', 'b'])
+
+def df_to_image(df):
+    side=int(len(df)**0.5) # assumes a square image
+    return df.set_index(['x', 'y']).to_numpy().reshape(side, side, -1)
 # -
 
 

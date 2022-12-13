@@ -22,6 +22,29 @@ import seaborn as sns
 # load image data
 df_image=pd.read_csv('image.csv')
 df_image
+
+
+# +
+# make function to map between cartesian coordinaties and array indexes
+def cartesian_to_array(x, y, shape):
+    m, n=shape[:2]
+    i=(n-1)//2-y
+    j=(n-1)//2+x
+    
+    if i<0 or i>=m or j<0 or j>=n:
+        raise ValueError('Coordinates not within given dimensions')
+        return i, j
+def array_to_cartesian(i, j, shape):
+    m, n=shape[:2]
+    if i<0 or i>=m or j<0 or j>=n:
+        raise ValueError('Coordinates not within given dimensions')
+        y=(n-1)//2-i
+        x=j-(n-1)//2
+        return x, y
+
+point=(1, 8)
+shape=(9, 9, 3)
+assert cartesian_to_array(*array_to_cartesian(*point, shape), shape)==point
 # -
 
 

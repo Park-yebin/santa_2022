@@ -33,14 +33,14 @@ def cartesian_to_array(x, y, shape):
     
     if i<0 or i>=m or j<0 or j>=n:
         raise ValueError('Coordinates not within given dimensions')
-        return i, j
+    return i, j
 def array_to_cartesian(i, j, shape):
     m, n=shape[:2]
     if i<0 or i>=m or j<0 or j>=n:
         raise ValueError('Coordinates not within given dimensions')
-        y=(n-1)//2-i
-        x=j-(n-1)//2
-        return x, y
+    y=(n-1)//2-i
+    x=j-(n-1)//2
+    return x, y
 
 point=(1, 8)
 shape=(9, 9, 3)

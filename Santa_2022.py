@@ -75,4 +75,4 @@ fig, ax=plt.subplots(figsize=(10, 10))
 ax.matshow(image, extent=(-radius, radius+1, -radius, radius+1))
 ax.grid(None);
 # -
-
+# #### These codes are from Kaggle competition's Santa 2022, the most voted code by Ryan Holbrook-Getting Started with Santa 2022

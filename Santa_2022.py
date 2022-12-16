@@ -18,6 +18,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from itertools import product
 
 # load image data
 df_image=pd.read_csv('image.csv')
@@ -63,6 +64,15 @@ def image_to_df(image):
 def df_to_image(df):
     side=int(len(df)**0.5) # assumes a square image
     return df.set_index(['x', 'y']).to_numpy().reshape(side, side, -1)
-# -
 
+
+# +
+image=df_to_image(df_image)
+assert image_to_df(image).equals(df_image) # ensure transforms are inverses
+
+radius=128
+fig, ax=plt.subplots(figsize=(10, 10))
+ax.matshow(image, extent=(-radius, radius+1, -radius, radius+1))
+ax.grid(None);
+# -
 
